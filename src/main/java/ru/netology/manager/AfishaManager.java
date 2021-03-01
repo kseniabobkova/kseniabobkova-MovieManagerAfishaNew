@@ -5,6 +5,16 @@ import ru.netology.domain.MovieItem;
 public class AfishaManager {
     private MovieItem[] items = new MovieItem[0];
 
+    public AfishaManager(int returnMovies) {
+        this.returnMovies = returnMovies;
+    }
+
+    public AfishaManager() {
+        this.returnMovies = 10;
+    }
+
+    int returnMovies;
+
     public void add(MovieItem item) {
         int length = items.length + 1;
         MovieItem[] tmp = new MovieItem[length];
@@ -14,16 +24,17 @@ public class AfishaManager {
         items = tmp;
     }
 
+
     public MovieItem[] getAll() {
         MovieItem[] result = new MovieItem[items.length];
         for (int i = 0; i < result.length; i++) {
             int index = items.length - i - 1;
             result[i] = items[index];
         }
-        if (result.length < 10) {
+        if (result.length < returnMovies) {
             return result;
         } else {
-            MovieItem[] result1 = new MovieItem[10];
+            MovieItem[] result1 = new MovieItem[returnMovies];
             for (int i = 0; i <= 9; i++) {
                 result1[i] = result[i];
             }
